@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Main Page</title>
+</head>
+<body>
+
+<wrapper>
+    <h1 class="name" id="main_page">BLOGS ONLINE</h1>
+    <button id="login_button">Log in</button>
+    <button id="register_button">Register</button>
+    <button id="blogs_button">Blogs</button>
+</wrapper>
+
+
+<form th:action="@{/user_login}" method="post">
+
+    <div class="login">
+        <h1>Please enter your credentials</h1>
+        <input type="text" id="username" name="username" autofocus="autofocus" placeholder="Name...">
+        <input type="password" id="password" name="password" placeholder="Password..." >
+        <br/>
+        <input type="submit" value="Log in"/>
+    </div>
+</form>
+
+<script type="text/javascript" th:src="@{js/script.js}"></script>
+</body>
+</html>
