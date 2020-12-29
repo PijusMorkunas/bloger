@@ -1,5 +1,6 @@
 package com.blogger.blog.Controller;
 
+import com.blogger.blog.model.LoginForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;

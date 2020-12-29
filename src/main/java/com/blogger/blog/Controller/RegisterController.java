@@ -1,34 +1,37 @@
 package com.blogger.blog.Controller;
 
+import com.blogger.blog.Repository.UserRepository;
+import com.blogger.blog.entity.User;
+import com.blogger.blog.model.RegisterForm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RegisterController {
-    @RequestMapping(value="/user_register", method = RequestMethod.GET)
-    public String getLoginForm(){
-        return "user_register";
+
+    //Autowire user repo
+    @Autowired
+    private UserRepository userRepository;
+
+
+    @GetMapping("/user_register")
+    public String getRegister() {
+        return "/user_register";
     }
-    @RequestMapping(value = "/user_register", method = RequestMethod.POST)
-    public String user_login(@ModelAttribute(name = "loginForm") LoginForm loginForm, Model model){
 
-        String username = loginForm.getUsername();
-        String password = loginForm.getPassword();
+    @PostMapping("/user_register")
+    public String submitRegister(RegisterForm registerForm) {
 
-        if("admin".equals(username) && "admin".equals(password)){
-            //if true return home
-            return "home";
+
+        //checking if the form data is coming
+        User user = null;
+        if (null != registerForm) {
+            user = new User(registerForm.getUsername(), registerForm.getPassword());
         }
-        //if false return home
-        model.addAttribute("invalidCredentials", true);
-        return "home";
-
+        userRepository.save(user);
+        return "register_success";
     }
-
-
 
 
 }

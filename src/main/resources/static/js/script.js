@@ -9,4 +9,6 @@ document.getElementById("blogs_button").onclick = function () {
 };
 document.getElementById("main_page").onclick = function () {
     location.href = "/"
+};document.getElementById("console").onclick = function () {
+    location.href = "/h2-console"
 };

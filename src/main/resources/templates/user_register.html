@@ -14,14 +14,14 @@
 </wrapper>
 
 
-<form th:action="@{/user_login}" th:object="${loginForm}" method="post">
+<form th:action="@{/user_register}" th:object="${registerForm}" method="post">
 
     <div class="login">
         <h1>Please register your credentials</h1>
         <input type="text" id="username" name="username" autofocus="autofocus" placeholder="Name...">
         <input type="password" id="password" name="password" placeholder="Password..." >
         <br/>
-        <input type="submit" value="Log in"/>
+        <input type="submit" value="Sing up"/>
     </div>
 </form>
 

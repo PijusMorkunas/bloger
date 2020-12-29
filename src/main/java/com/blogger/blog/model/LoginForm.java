@@ -1,4 +1,4 @@
-package com.blogger.blog.Controller;
+package com.blogger.blog.model;
 
 import lombok.Getter;
 import lombok.Setter;
