@@ -11,6 +11,26 @@
     <button id="register_button">Register</button>
     <button id="blogs_button">Blogs</button>
 </wrapper>
+<center><h1>Blogs</h1>
+
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Blog id:</th>
+            <th>Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blog: ${blogList}">
+            <td th:text="${blog.id}">Blog ID</td>
+            <td th:text="${blog.content}">Blog ID</td>
+
+        </tr>
+
+        </tbody>
+    </table>
+</center>
+
 <script type="text/javascript" th:src="@{js/script.js}"></script>
 
 </body>

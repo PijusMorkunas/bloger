@@ -25,7 +25,12 @@ public class BlogController {
         model.addAttribute("blogList", blogList);
         return "blogs";
     }
-
+    @RequestMapping("/")
+    public String viewHomeBlogs(Model model) {
+        List<Blog> blogList = service.listAll();
+        model.addAttribute("blogList", blogList);
+        return "home";
+    }
     @RequestMapping("/new")
     public String newBlog(Model model) {
         Blog blog = new Blog();
