@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Main Page</title>
+</head>
+<body>
+<wrapper>
+    <h1 class="name" id="main_page">BLOGS ONLINE</h1>
+    <button id="login_button">Log in</button>
+    <button id="register_button">Register</button>
+    <button id="blogs_button">Blogs</button>
+</wrapper>
+
+<center>
+    <form class="inputBlog" action="#" th:action="@{/save}" th:object="${blog}" method="post">
+        <label>
+            <textarea class="contentInput" type="text" th:field="*{content}"></textarea>
+        </label>
+        <button class="saveBlog" type="submit">Edit</button>
+    </form>
+</center>
+
+
+<script type="text/javascript" th:src="@{js/script.js}"></script>
+
+</body>

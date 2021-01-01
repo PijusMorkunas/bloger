@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Main Page</title>
+</head>
+<body>
+<wrapper>
+    <h1 class="name" id="main_page">BLOGS ONLINE</h1>
+    <button id="login_button">Log in</button>
+    <button id="register_button">Register</button>
+    <button id="blogs_button">Blogs</button>
+</wrapper>
+
+<center><h1>Blogs</h1>
+    <a class="cnb" th:href="new">Create New Blog</a>
+
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Blog id:</th>
+            <th>Content</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="blog: ${blogList}">
+            <td th:text="${blog.id}">Blog ID</td>
+            <td th:text="${blog.content}">Blog ID</td>
+
+            <td><a class="saveBlog" th:href="@{'/edit/' + ${blog.id}}">Edit</a></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+</center>
+
+<script type="text/javascript" th:src="@{js/script.js}"></script>
+
+</body>
