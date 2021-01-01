@@ -2,36 +2,38 @@ package com.blogger.blog.Controller;
 
 import com.blogger.blog.Repository.UserRepository;
 import com.blogger.blog.entity.User;
-import com.blogger.blog.model.RegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RegisterController {
-
-    //Autowire user repo
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository repo;
 
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
 
-    @GetMapping("/user_register")
-    public String getRegister() {
-        return "/user_register";
+        return "user_register";
     }
 
-    @PostMapping("/user_register")
-    public String submitRegister(RegisterForm registerForm) {
-
-
-        //checking if the form data is coming
-        User user = null;
-        if (null != registerForm) {
-            user = new User(registerForm.getUsername(), registerForm.getPassword());
-        }
-        userRepository.save(user);
+    @GetMapping("/process_register")
+    public String yas() {
         return "register_success";
     }
 
+    @PostMapping("/process_register")
+    public String processRegistration(User user) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        repo.save(user);
+
+        return "register_success";
+    }
 
 }

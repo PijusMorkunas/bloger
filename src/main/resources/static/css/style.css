@@ -1,5 +1,5 @@
 
-wrapper{
+wrapper {
 
     width: 100%;
     background-color: #99ccff;
@@ -8,7 +8,8 @@ wrapper{
     border-bottom: solid .3vh gray;
 
 }
-button{
+
+button {
     float: right;
     background-color: #99ccff;
     border: none;
@@ -18,12 +19,14 @@ button{
     font-size: 14px;
     cursor: pointer;
 }
+
 body {
     margin: 0;
     padding: 0;
     background-image: url('https://i.imgur.com/3eM61yj.png');
 }
-.name{
+
+.name {
     color: white;
     padding: 0px 25px;
     font-size: 20px;
@@ -31,11 +34,13 @@ body {
     margin-left: 40%;
     cursor: pointer;
 }
-img{
+
+img {
 
     height: 100%;
     width: 100%;
 }
+
 .login {
     background: #99ccff;
     width: 20%;
@@ -47,16 +52,19 @@ img{
 
 
 }
-input:hover{
+
+input:hover {
     border-bottom: solid .3vh green;
 }
-input{
+
+input {
     height: 2vh;
     float: right;
     margin-right: 25%;
 
 }
-input[type="submit"]{
+
+input[type="submit"] {
     float: left;
     margin-left: 30%;
     margin-top: 5%;
@@ -70,4 +78,58 @@ input[type="submit"]{
     font-size: 12px;
 
 
+}
+
+table {
+    background-color: #000058;
+    color: #F3F3F3;
+    font-size: 20px;
+
+}
+
+tr {
+    border: 5px black;
+
+}
+
+.cnb {
+    cursor: pointer;
+
+}
+
+textarea {
+    margin-top: 10%;
+    width: 50%;
+    height: 20vh;
+    background: #000058;
+    color: white;
+    font-size: 16px;
+    word-wrap: break-word;
+    resize: none;
+    box-sizing: border-box;
+    float: left;
+    margin-left: 25%;
+}
+
+.saveBlog {
+    margin-top: 20%;
+    margin-right: 15%;
+}
+
+a {
+    color: #99ccff;
+}
+
+.submit {
+    float: left;
+    margin-left: 30%;
+    margin-top: 5%;
+    background-color: #D7A9E3FF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 5vh;
+    width: 40%;
+    font-size: 12px;
 }
