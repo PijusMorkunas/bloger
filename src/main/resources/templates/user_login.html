@@ -6,20 +6,30 @@
 </head>
 <body>
 
-<wrapper>
-    <h1 class="name" id="main_page">BLOGS ONLINE</h1>
-    <button id="login_button">Log in</button>
-    <button id="register_button">Register</button>
-    <button id="blogs_button">Blogs</button>
-</wrapper>
+<div class="wrapper">
+    <li class="nav-item">
+        <a th:href="@{?lang=lt}">
+            <img th:src="@{/images/LtFlag.png}"/>LT
+        </a>
+    </li>    <li class="nav-item">
+    <a th:href="@{?lang=en}">
+        <img th:src="@{/images/Klaida.png}"/>en
+    </a>
+</li>
+    <h1 class="name" id="main_page">[[#{app.title}]]</h1>
+    <button id="login_button">[[#{app.login}]]</button>
+    <button id="register_button">[[#{app.register}]]</button>
+    <button id="blogs_button">[[#{app.name}]]</button>
+
+</div>
 
 
 <form th:action="@{/user_login}" method="post">
 
     <div class="login">
         <h1>Login</h1>
-        <input type="text" id="username" name="username" autofocus="autofocus" placeholder="Name...">
-        <input type="password" id="password" name="password" placeholder="Password...">
+        <label for="username"></label><input type="text" id="username" name="username" autofocus="autofocus" placeholder="Name...">
+        <label for="password"></label><input type="password" id="password" name="password" placeholder="Password...">
         <br/>
         <input type="submit" value="Log in"/>
     </div>

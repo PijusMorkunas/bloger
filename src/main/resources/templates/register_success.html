@@ -5,11 +5,22 @@
     <title>Main Page</title>
 </head>
 <body>
-<wrapper>
-    <h1 class="name" id="main_page">BLOGS ONLINE</h1>
-    <button id="login_button">Log in</button>
-    <button id="blogs_button">Blogs</button>
-</wrapper>
+<div class="wrapper">
+    <li class="nav-item">
+        <a th:href="@{?lang=lt}">
+            <img th:src="@{/images/LtFlag.png}"/>LT
+        </a>
+    </li>    <li class="nav-item">
+    <a th:href="@{?lang=en}">
+        <img th:src="@{/images/Klaida.png}"/>en
+    </a>
+</li>
+    <h1 class="name" id="main_page">[[#{app.title}]]</h1>
+    <button id="login_button">[[#{app.login}]]</button>
+    <button id="register_button">[[#{app.register}]]</button>
+    <button id="blogs_button">[[#{app.name}]]</button>
+
+</div>
 <center>
     <h1>Success!!!</h1>
 </center>

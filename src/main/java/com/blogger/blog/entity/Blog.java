@@ -6,7 +6,8 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,15 +15,17 @@ import java.sql.Date;
 @Entity
 @Table(name = "blog")
 public class Blog {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private String content;
-    private String comment;
-    private Long user_Id;
 
-    //public or protected?
-    public Blog() {
-    }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
 
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "blog_id", nullable = false, insertable = false, updatable = false )
+    private List<Comment> comment = new ArrayList<>();
 }
