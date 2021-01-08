@@ -1,7 +1,7 @@
 package com.blogger.blog.Controller;
 
-import com.blogger.blog.entity.Blog;
-import com.blogger.blog.entity.Comment;
+import com.blogger.blog.model.Blog;
+import com.blogger.blog.model.Comment;
 
 import com.blogger.blog.service.BlogService;
 import com.blogger.blog.service.CommentService;
@@ -77,7 +77,7 @@ public class BlogController {
 
         return mav;
     }
-        @RequestMapping(value = "/saveCommentWithBlogId/{blogId}/{commentId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveCommentWithBlogId/{blogId}/{commentId}", method = RequestMethod.POST)
     public String saveCommentWithBlogId(@ModelAttribute("comment") Comment comment,
                                         @PathVariable(name = "blogId") Blog blogId, @PathVariable(name = "commentId") Long commentId) {
         commentService.saveWithBlogAndComment(comment, blogId, commentId);
@@ -89,7 +89,7 @@ public class BlogController {
     public ModelAndView editComment(@PathVariable(name = "blogId") Long blogId, @PathVariable(name = "commentId") Long commentId) {
         ModelAndView mav = new ModelAndView("edit_comment");
 
-      Comment comment = commentService.get(commentId);
+        Comment comment = commentService.get(commentId);
         mav.addObject("comment", comment);
         Blog blog = blogService.get(blogId);
         mav.addObject("blog", blog);
@@ -106,38 +106,32 @@ public class BlogController {
     }
 
 
-        @RequestMapping(value = "/saveComment/{id}", method = RequestMethod.POST)
-        public String saveComment(@ModelAttribute("comment") Comment comment, @PathVariable(name = "id") Blog id) {
-            commentService.save(comment, id);
-            return "redirect:/blogs";
-        }
-
-
-        @RequestMapping("/newComment/{id}")
-        public String newComment(Model model, @PathVariable(name = "id") Long id, Comment comment, Blog blog) {
-            model.addAttribute("comment", comment);
-            model.addAttribute("blog", blog);
-            model.addAttribute("id", id);
-            return "new_comment";
-
-        }
-
-        @RequestMapping("/deleteComment/{id}")
-        public String deleteComment(@PathVariable(name = "id") Long id) {
-            commentService.delete(id);
-            return "redirect:/blogs";
-        }
-    @RequestMapping("/?=lang=en")
-    public String languageEnglish() {
-
-        return "redirect:/";
-
-    }    @RequestMapping("/?=lang=lt")
-    public String languageLithuanian() {
-
-        return "redirect:/";
+    @RequestMapping(value = "/saveComment/{id}", method = RequestMethod.POST)
+    public String saveComment(@ModelAttribute("comment") Comment comment, @PathVariable(name = "id") Blog id) {
+        commentService.save(comment, id);
+        return "redirect:/blogs";
     }
+
+
+    @RequestMapping("/newComment/{id}")
+    public String newComment(Model model, @PathVariable(name = "id") Long id, Comment comment, Blog blog) {
+        model.addAttribute("comment", comment);
+        model.addAttribute("blog", blog);
+        model.addAttribute("id", id);
+        return "new_comment";
 
     }
 
+    @RequestMapping("/process_register")
+    public String processRegister(){
+        return "redirect:/";
+    }
+
+    @RequestMapping("/deleteComment/{id}")
+    public String deleteComment(@PathVariable(name = "id") Long id) {
+        commentService.delete(id);
+        return "redirect:/blogs";
+    }
+
+}
 

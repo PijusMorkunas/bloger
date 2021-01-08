@@ -1,9 +1,8 @@
 package com.blogger.blog.service;
 
-import com.blogger.blog.entity.Blog;
-import com.blogger.blog.entity.Comment;
+import com.blogger.blog.model.Blog;
+import com.blogger.blog.model.Comment;
 
-import com.blogger.blog.entity.User;
 import com.blogger.blog.repository.BlogRepository;
 import com.blogger.blog.repository.CommentRepository;
 

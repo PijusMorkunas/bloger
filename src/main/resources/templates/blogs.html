@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <title>Main Page</title>
@@ -13,14 +15,15 @@
     </li>
     <li class="nav-item">
         <a th:href="@{?lang=en}">
-            <img th:src="@{/images/Klaida.png}"/>en
+            <img th:src="@{/images/UkFlag.png}"/>en
         </a>
     </li>
     <h1 class="name" id="main_page">[[#{app.title}]]</h1>
     <button id="login_button">[[#{app.login}]]</button>
     <button id="register_button">[[#{app.register}]]</button>
     <button id="blogs_button">[[#{app.name}]]</button>
-    <td class="username" th:text="${username}"></td>
+
+
 </div>
 <div class="center">
     <h1>[[#{app.name}]]</h1>
@@ -33,6 +36,7 @@
             <th>[[#{app.contents}]]</th>
             <th>[[#{app.utility}]]</th>
             <th>[[#{app.comments}]]</th>
+
         </tr>
         </thead>
         <tbody>
@@ -44,8 +48,7 @@
             <td th:if="${blog.user.getUsername()} == ${username}">
                 <a th:href="@{'/edit/' + ${blog.id}}">[[#{app.change}]]</a>
                 <br/>
-
-                <a th:href="@{'/delete/' + ${blog.id}}">[[#{app.delete}]]</a>
+                <a sec:authorize="ADMIN" th:href="@{'/delete/' + ${blog.id}}">[[#{app.delete}]]</a>
                 <br/>
 
                 <a th:href="@{'/newComment/' + ${blog.id}}">[[#{app.newComment}]]</a>
@@ -57,7 +60,6 @@
                     <br/>
 
                     <a th:href="@{'/editComment/' + ${blog.id} +'/'+${comment.id}}">[[#{app.editComment}]]</a>
-<!--                    <a th:href="@{'/editComment/' + ${blog.id} + '/'+ ${comment.id}}">[[#{app.editComment}]]</a>-->
                     <br/>
 
                 </div>

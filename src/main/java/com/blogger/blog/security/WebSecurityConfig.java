@@ -1,7 +1,6 @@
 package com.blogger.blog.security;
 
 import com.blogger.blog.userDetails.CustomUserServiceDetails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -46,22 +45,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/blogs").authenticated()
-                .anyRequest().permitAll()
+                .antMatchers("/blogs").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/new").hasAnyAuthority("ADMIN")
+                .antMatchers("/edit/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/delete/**").hasAuthority("ADMIN")
+                .antMatchers("/").anonymous()
                 .and()
-                .formLogin()
-                .usernameParameter("username")
-                .defaultSuccessUrl("/blogs")
-                .permitAll()
+                .formLogin().permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/").permitAll();
-    }
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/blogs")
+        ;
+  }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("admin").password("adminer").roles("ADMIN");
-    }
 
 }

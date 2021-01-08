@@ -1,12 +1,9 @@
-package com.blogger.blog.entity;
+package com.blogger.blog.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -20,12 +17,7 @@ public class User {
     private String username;
     @Column(nullable = false, unique = true, length = 64)
     private String password;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_has_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> role = new HashSet<>();
+    @Column(nullable = false)
+    private Integer authorities;
 
 }

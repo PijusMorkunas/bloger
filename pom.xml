@@ -32,8 +32,10 @@
             <version>7.0.0.Final</version>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
 
                 <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->

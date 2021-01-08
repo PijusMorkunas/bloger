@@ -1,7 +1,6 @@
 package com.blogger.blog.userDetails;
 
-import com.blogger.blog.entity.Role;
-import com.blogger.blog.entity.User;
+import com.blogger.blog.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,12 +19,14 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Role> roles = user.getRole();
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (Role role : roles){
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+        if (user.getAuthorities().equals(1)){
+            grantedAuthorityList.add(new SimpleGrantedAuthority("ADMIN"));
+        }else {
+            grantedAuthorityList.add(new SimpleGrantedAuthority("USER"));
         }
-        return authorities;
+        return grantedAuthorityList;
+
     }
 
     @Override
