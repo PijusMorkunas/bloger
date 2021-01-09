@@ -4,6 +4,11 @@
 
 <head>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Main Page</title>
 </head>
 <body>
@@ -45,10 +50,10 @@
             <td th:text="${blog.user.getUsername()}"></td>
             <td th:text="${blog.content}">[[#{app.content}]]</td>
 
-            <td th:if="${blog.user.getUsername()} == ${username}">
-                <a th:href="@{'/edit/' + ${blog.id}}">[[#{app.change}]]</a>
+            <td >
+                <a th:if="${blog.user.getAuthorities()}" th:href="@{'/edit/' + ${blog.id}}">[[#{app.change}]]</a>
                 <br/>
-                <a sec:authorize="ADMIN" th:href="@{'/delete/' + ${blog.id}}">[[#{app.delete}]]</a>
+                <a  th:href="@{'/delete/' + ${blog.id}}">[[#{app.delete}]]</a>
                 <br/>
 
                 <a th:href="@{'/newComment/' + ${blog.id}}">[[#{app.newComment}]]</a>
@@ -56,7 +61,9 @@
 
                 <div th:if="${comment.blog.id} == ${blog.id}" th:each="comment: ${commentList}">
 
-                    <a th:href="@{'/deleteComment/' + ${comment.id}}">[[#{app.deleteComment}]]</a>
+
+<!--                    th:if="${comment.blog.user.getUsername()} == ${username}"-->
+                    <a  th:href="@{'/deleteComment/' + ${comment.id}}">[[#{app.deleteComment}]]</a>
                     <br/>
 
                     <a th:href="@{'/editComment/' + ${blog.id} +'/'+${comment.id}}">[[#{app.editComment}]]</a>
